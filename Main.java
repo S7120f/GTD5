@@ -8,6 +8,7 @@ public static void main(String[] args) {
     mainPanel.setPreferredSize(new Dimension(1000, 800));
     mainPanel.setBackground(Color.black);
     mainPanel.setLayout(null);
+    mainPanel.add(new BottomPanel());
     mainPanel.add(new TodoPanel());
     mainPanel.add(new BottomRightPanel());
     mainPanel.add(new RightPanel());
