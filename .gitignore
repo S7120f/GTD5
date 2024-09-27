@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+/.idea/
+/*.iml
+/.vscode/
+/*.swp
+/target/
+/build/
+*.class
+*.jar
+*.war
+*.log
+/.mvn/
+/target/
+/.gradle/
+/build/
+.env
