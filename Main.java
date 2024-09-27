@@ -10,6 +10,7 @@ public static void main(String[] args) {
     mainPanel.setLayout(null);
     mainPanel.add(new TodoPanel());
     mainPanel.add(new BottomRightPanel());
+    mainPanel.add(new RightPanel());
    
     JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
