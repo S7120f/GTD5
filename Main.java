@@ -11,6 +11,8 @@ public static void main(String[] args) {
     mainPanel.add(new BottomPanel());
     mainPanel.add(new TodoPanel());
     mainPanel.add(new BottomRightPanel());
+    mainPanel.add(new RightPanel());
+   
     JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setResizable(false);
