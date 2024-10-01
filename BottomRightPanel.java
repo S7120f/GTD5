@@ -3,15 +3,18 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Insets;  // För att justera knappens marginer
+import java.awt.Insets; // För att justera knappens marginer
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class BottomRightPanel extends JPanel {
+public class BottomRightPanel extends JPanel implements ActionListener {
 
     private JLabel activeTasksLabel;
     private JLabel completedTasksLabel;
     public int activeTasks = 0;
     public int completedTasks = 0;
 
+    JButton minusActiveButton, plusActiveButton, minusCompletedButton, plusCompletedButton;
 
     public BottomRightPanel() {
         setBounds(800, 600, 200, 200);
@@ -25,10 +28,16 @@ public class BottomRightPanel extends JPanel {
         add(activeTasksLabel);
 
         // Lägger till en minusknapp för aktiva toDos.
-        JButton minusActiveButton = new JButton("-");
+        minusActiveButton = new JButton("-");
         minusActiveButton.setBounds(30, 70, 30, 20);
         minusActiveButton.setFont(new Font("Minus-aktiv", Font.PLAIN, 10));
-        minusActiveButton.setMargin(new Insets(0, 0, 0, 0));  // Tar bort onödig padding
+        minusActiveButton.setMargin(new Insets(0, 0, 0, 0)); // Tar bort onödig padding
+        minusActiveButton.addActionListener(e -> {
+            if (activeTasks > 0) {
+                activeTasks--;
+                activeTasksLabel.setText("Active: " + activeTasks);
+            }
+        });
         add(minusActiveButton);
 
         // Lägger till en plusknapp för aktiva toDos.
@@ -36,6 +45,10 @@ public class BottomRightPanel extends JPanel {
         plusActiveButton.setBounds(70, 70, 30, 20);
         plusActiveButton.setFont(new Font("Minus-aktiv", Font.PLAIN, 10));
         plusActiveButton.setMargin(new Insets(0, 0, 0, 0));
+        plusActiveButton.addActionListener(e -> {
+            activeTasks++;
+            activeTasksLabel.setText("Active: " + activeTasks);
+        });
         add(plusActiveButton);
 
         // JLabel för avklarade todoCards.
@@ -49,6 +62,11 @@ public class BottomRightPanel extends JPanel {
         minusCompletedButton.setBounds(30, 150, 30, 20);
         minusCompletedButton.setFont(new Font("Minus", Font.PLAIN, 10));
         minusCompletedButton.setMargin(new Insets(0, 0, 0, 0));
+        minusCompletedButton.addActionListener(e -> {
+            if (completedTasks > 0) {
+                completedTasks--;
+            }
+        });
         add(minusCompletedButton);
 
         // Lägger till en plusknapp för avklarade toDos.
@@ -56,9 +74,11 @@ public class BottomRightPanel extends JPanel {
         plusCompletedButton.setBounds(70, 150, 30, 20);
         plusCompletedButton.setFont(new Font("Plus", Font.PLAIN, 10));
         plusCompletedButton.setMargin(new Insets(0, 0, 0, 0));
+        plusCompletedButton.addActionListener(e -> {
+            completedTasks++;
+            completedTasksLabel.setText("Completed: " + completedTasks);
+        });
         add(plusCompletedButton);
 
-
-        //Lägga till aktionlisteners för plus och minus knappar.
     }
 }
