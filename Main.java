@@ -7,6 +7,8 @@ public class Main {
 
     //Declares a global todopanel object.
     private static TodoPanel todoPanel;
+    private static BottomRightPanel bottomRightPanel;
+
 
     public static void main(String[] args) {
         JPanel mainPanel = new JPanel();
@@ -14,12 +16,13 @@ public class Main {
         mainPanel.setBackground(Color.black);
         mainPanel.setLayout(null);
 
-        //Initializes the todopanel object.
+        //Initializes all panel objects.
         todoPanel = new TodoPanel();
+        bottomRightPanel = new BottomRightPanel();
 
         mainPanel.add(new BottomPanel());
         mainPanel.add(todoPanel);
-        mainPanel.add(new BottomRightPanel());
+        mainPanel.add(bottomRightPanel);
         mainPanel.add(new RightPanel());
 
         JFrame frame = new JFrame();
@@ -38,5 +41,12 @@ public class Main {
     public static TodoPanel getTodoPanel() {
         return todoPanel;
     }
+
+    // A getter for the bottomRightPanel object.
+    // Call this by Main.getBottomRightPanel()
+    public static BottomRightPanel getBottomRightPanel() {
+        return bottomRightPanel;
+    }
+
 }
 
