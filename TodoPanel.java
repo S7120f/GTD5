@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class TodoPanel extends JPanel {
 
-
     private final int
             CARD_SIZE_W = 220,
             CARD_SIZE_H = 100,
@@ -61,6 +60,10 @@ public class TodoPanel extends JPanel {
 
         // Add card panel to the class panel
         add(panelCard);
+
+        // Adds active amount when added card.
+        // int activeAmount = getComponentCount();
+        // Main.getBottomRightPanel().updateActiveTasks(activeAmount);
     }
 
     private void removeCard(JPanel panelCard) {
@@ -105,7 +108,7 @@ public class TodoPanel extends JPanel {
         buttonDelete.addActionListener(_ -> {
             System.out.println("Deleted: " + title + "!");
             removeCard(panelCard);
-            // Replace this line with a call to the bottomright panel to update active cards list. Use size of todoCards
+            Main.getBottomRightPanel().updateActiveTasks(0);
         });
         return buttonDelete;
     }
@@ -117,7 +120,9 @@ public class TodoPanel extends JPanel {
             System.out.println("Completed: " + title + "!");
             // Replace this line with a call to the completed list
             removeCard(panelCard);
-            // Replace this line with a call to the bottomright panel to update active cards list. Use size of todoCards
+            int activeAmount = getComponentCount();
+        Main.getBottomRightPanel().updateActiveTasks(activeAmount);
+        // Main.getBottomRightPanel().updateCompletedTasks(0);
         });
         return buttonCompleted;
     }
