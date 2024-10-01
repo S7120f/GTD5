@@ -8,6 +8,7 @@ public class Main {
     //Declares a global todopanel object.
     private static TodoPanel todoPanel;
     private static BottomRightPanel bottomRightPanel;
+    private static RightPanel rightPanel; 
 
 
     public static void main(String[] args) {
@@ -17,13 +18,14 @@ public class Main {
         mainPanel.setLayout(null);
 
         //Initializes all panel objects.
-        todoPanel = new TodoPanel();
         bottomRightPanel = new BottomRightPanel();
+        todoPanel = new TodoPanel();
+        rightPanel = new RightPanel(); // Initialize the right panel.
 
         mainPanel.add(new BottomPanel());
         mainPanel.add(todoPanel);
         mainPanel.add(bottomRightPanel);
-        mainPanel.add(new RightPanel());
+        mainPanel.add(rightPanel); // Add the right panel to the main panel.
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +48,13 @@ public class Main {
     // Call this by Main.getBottomRightPanel()
     public static BottomRightPanel getBottomRightPanel() {
         return bottomRightPanel;
+    }
+
+
+    // A getter for the RightPanel object.
+    // Call this by Main.getRightPanel()
+    public static RightPanel getRightPanel() {
+        return rightPanel;
     }
 
 }

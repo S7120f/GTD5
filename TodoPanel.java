@@ -118,7 +118,7 @@ public class TodoPanel extends JPanel {
         buttonCompleted.setBackground(Color.GREEN);
         buttonCompleted.addActionListener(_ -> {
             System.out.println("Completed: " + title + "!");
-            // Replace this line with a call to the completed list
+            Main.getRightPanel().addCompletedTask(title);
             removeCard(panelCard);
             int activeAmount = getComponentCount();
         Main.getBottomRightPanel().updateActiveTasks(activeAmount);
