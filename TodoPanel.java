@@ -13,11 +13,15 @@ public class TodoPanel extends JPanel {
             CARD_OFFSET_W = 35,
             CARD_OFFSET_H = 30;
 
+
+
     public TodoPanel() {
         setBounds(0, 0, 800, 600);
         setBackground(new Color(0xF619CD));
         setLayout(null);
 
+
+        //These are just temporary
         createNewCard("Detta är något", "Ska göra något");
         createNewCard("Detta är något anant", "Ska göra något annat");
         createNewCard("Också något", "Detta ska också göras");
@@ -25,6 +29,8 @@ public class TodoPanel extends JPanel {
 
     }
 
+
+    //Call this method to add a new todocard in this panel.
     public void createNewCard(String title, String description) {
         int rowIndex = getComponents().length % 3;
         int colIndex = getComponents().length / 3;
