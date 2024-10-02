@@ -22,7 +22,7 @@ public class Main {
         todoPanel = new TodoPanel();
         rightPanel = new RightPanel(); // Initialize the right panel.
 
-        mainPanel.add(new BottomPanel());
+        mainPanel.add(new BottomPanel(todoPanel));
         mainPanel.add(todoPanel);
         mainPanel.add(bottomRightPanel);
         mainPanel.add(rightPanel); // Add the right panel to the main panel.
