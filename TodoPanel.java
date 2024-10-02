@@ -197,7 +197,6 @@ public class TodoPanel extends JPanel {
             Main.getRightPanel().addCompletedTask(title);
             removeCard(panelCard);
             updateActiveTasks();
-            // Main.getBottomRightPanel().updateCompletedTasks(0);
         });
         return buttonCompleted;
     }
