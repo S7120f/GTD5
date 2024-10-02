@@ -31,5 +31,12 @@ public class RightPanel extends JPanel {
         completedTaskPanel.add(completedLabel); // Add the completedLabel to the completedTask panel
         add(completedTaskPanel, BorderLayout.CENTER); // Add the completedTask panel to the RightPanel at the top center
         completedLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 16));
+        updateCompletedTasks();
     }
+
+    private void updateCompletedTasks() {
+        int completedAmount = getComponentCount();
+        Main.getBottomRightPanel().updateCompletedTasks(completedAmount);
+    }
+
 }
