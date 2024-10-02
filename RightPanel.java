@@ -26,7 +26,6 @@ public class RightPanel extends JPanel {
         completedTaskPanel.setPreferredSize(new Dimension(180, 30)); // Set the preferred size of the panel to 150x20
         completedTaskPanel.setBorder(new BevelBorder(BevelBorder.RAISED)); // Set the border of the panel to a raised bevel border
         completedTaskPanel.setBorder(new BevelBorder(BevelBorder.LOWERED)); // Set the border of the panel to a lowered bevel border
-        
 
         JLabel completedLabel = new JLabel(completedTask); // Create a new JLabel called completedLabel
         completedTaskPanel.add(completedLabel); // Add the completedLabel to the completedTask panel
