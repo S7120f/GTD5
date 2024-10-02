@@ -70,7 +70,6 @@ public class TodoPanel extends JPanel {
 
         // Add card panel to the class panel
         add(panelCard);
-        revalidate();
         repaint();
         // Adds active amount when added card.
         // int activeAmount = getComponentCount();

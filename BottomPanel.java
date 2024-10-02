@@ -22,7 +22,7 @@ JButton addButton;
 public BottomPanel() {
 
     setBounds(0, 600, 800, 200);
-    setBackground(Color.YELLOW);
+    setBackground(new Color(0x7993FF));
     setLayout(new FlowLayout(FlowLayout.LEFT));
 
     add(initTitle());
@@ -37,7 +37,6 @@ private JTextField initTitle() {
     toDoTitle.setPreferredSize(new Dimension(100, 30)); // adjust the size of the textfield
     toDoTitle.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));    // textfield border
     toDoTitle.setFont(new Font("Arial", Font.BOLD, 15));    // The font settings
-    
     toDoTitle.addFocusListener(new FocusListener() {
         @Override
         public void focusGained(FocusEvent event) {
@@ -62,7 +61,6 @@ private JTextArea initDesc() {
     descriptionArea.setFont(new Font("Arial", Font.BOLD, 15));  // The font settings
     descriptionArea.setLineWrap(true);      // makes the line of text stay within the textarea, so it is visible all the time
     descriptionArea.setWrapStyleWord(true);     // makes the words "non-breakable" when the line of text is changing line
-    
     descriptionArea.addFocusListener(new FocusListener() {
         @Override
         public void focusGained(FocusEvent event) {
