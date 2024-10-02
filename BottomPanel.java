@@ -15,20 +15,25 @@ import javax.swing.JTextField;
 
 public class BottomPanel extends JPanel {
 
-    TodoPanel todoPanel;
-    
-    JTextField toDoTitle;
-    JTextArea descriptionArea;
-    JButton addButton;
+JTextField toDoTitle;
+JTextArea descriptionArea;     
+JButton addButton;
 
-public BottomPanel(TodoPanel todoPanel) {
-    this.todoPanel = todoPanel;
+public BottomPanel() {
 
     setBounds(0, 600, 800, 200);
     setBackground(Color.YELLOW);
     setLayout(new FlowLayout(FlowLayout.LEFT));
 
-    JTextField toDoTitle = new JTextField("Lägg till titel...", 15);  
+    add(initTitle());
+    add(initDesc());
+    add(button());
+    
+    }
+
+private JTextField initTitle() {
+    
+    toDoTitle = new JTextField("Lägg till titel...", 15);  
     toDoTitle.setPreferredSize(new Dimension(100, 30)); // adjust the size of the textfield
     toDoTitle.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));    // textfield border
     toDoTitle.setFont(new Font("Arial", Font.BOLD, 15));    // The font settings
@@ -47,14 +52,17 @@ public BottomPanel(TodoPanel todoPanel) {
             }   
         }
     });
+    return toDoTitle;
+}
 
-    JTextArea descriptionArea = new JTextArea("Lägg till text...", 5, 20);
+private JTextArea initDesc() {
+    descriptionArea = new JTextArea("Lägg till text...", 5, 20);
     descriptionArea.setPreferredSize(new Dimension(400, 150));  // adjust the size of the textarea
     descriptionArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));  // textfield border
     descriptionArea.setFont(new Font("Arial", Font.BOLD, 15));  // The font settings
     descriptionArea.setLineWrap(true);      // makes the line of text stay within the textarea, so it is visible all the time
     descriptionArea.setWrapStyleWord(true);     // makes the words "non-breakable" when the line of text is changing line
-
+    
     descriptionArea.addFocusListener(new FocusListener() {
         @Override
         public void focusGained(FocusEvent event) {
@@ -69,12 +77,13 @@ public BottomPanel(TodoPanel todoPanel) {
             }   
         }
     });
-    
+    return descriptionArea;
+}
 
-    JButton addButton = new JButton("add ToDo");
+private JButton button() {
+    addButton = new JButton("add ToDo");
     addButton.setPreferredSize(new Dimension(150, 150));    // size of the button
     addButton.setFont(new Font("Arial", Font.BOLD, 15));    // The font settings
-    
     addButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e ) {
@@ -82,26 +91,13 @@ public BottomPanel(TodoPanel todoPanel) {
             String title = toDoTitle.getText();
             String description = descriptionArea.getText();
             
-            todoPanel.createNewCard(title,description);
+            Main.getTodoPanel().createNewCard(title,description);
 
         }
     });
-    
-    add(toDoTitle);
-    add(descriptionArea);
-    add(addButton);
-    }
+    return addButton;
+}
 
-// @Override
-// public void actionPerformed(ActionEvent e) {
-
-//     String titleInput = toDoTitle.getText();
-//     String DescInput = descriptionArea.getText();
-
-//     toDoPanel.createNewCard(titleInput,DescInput);
-
-
-// }
 
     
 }
