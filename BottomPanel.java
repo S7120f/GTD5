@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.FocusListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 
 import javax.swing.BorderFactory;
@@ -11,11 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class BottomPanel extends JPanel  {
+public class BottomPanel extends JPanel {
 
+    TodoPanel todoPanel;
     
+    JTextField toDoTitle;
+    JTextArea descriptionArea;
+    JButton addButton;
 
-public BottomPanel() {
+public BottomPanel(TodoPanel todoPanel) {
+    this.todoPanel = todoPanel;
+
     setBounds(0, 600, 800, 200);
     setBackground(Color.YELLOW);
     setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -66,11 +74,34 @@ public BottomPanel() {
     JButton addButton = new JButton("add ToDo");
     addButton.setPreferredSize(new Dimension(150, 150));    // size of the button
     addButton.setFont(new Font("Arial", Font.BOLD, 15));    // The font settings
+    
+    addButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e ) {
+            
+            String title = toDoTitle.getText();
+            String description = descriptionArea.getText();
+            
+            todoPanel.createNewCard(title,description);
 
+        }
+    });
+    
     add(toDoTitle);
     add(descriptionArea);
     add(addButton);
     }
+
+// @Override
+// public void actionPerformed(ActionEvent e) {
+
+//     String titleInput = toDoTitle.getText();
+//     String DescInput = descriptionArea.getText();
+
+//     toDoPanel.createNewCard(titleInput,DescInput);
+
+
+// }
 
     
 }
