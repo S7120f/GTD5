@@ -1,5 +1,8 @@
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,7 +13,9 @@ public class RightPanel extends JPanel {
     public RightPanel() {
 
         setBounds(800, 0, 200, 600);
-        setBackground(Color.green);
+        setBackground(new Color (0x202D67));
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        setBorder(blackline);
 
     }
 
@@ -18,8 +23,10 @@ public class RightPanel extends JPanel {
     public void addCompletedTask(String completedTask) {
 
         JPanel completedTaskPanel = new JPanel(); // Create a new JPanel called completedTask
-        completedTaskPanel.setBackground(Color.red); // Set the background color of the panel to red
-        completedTaskPanel.setPreferredSize(new Dimension(150, 20)); // Set the preferred size of the panel to 150x20
+        completedTaskPanel.setBackground(Color.GREEN); // Set the background color of the panel to red
+        completedTaskPanel.setPreferredSize(new Dimension(180, 50)); // Set the preferred size of the panel to 150x20
+        completedTaskPanel.setBorder(new BevelBorder(BevelBorder.RAISED)); // Set the border of the panel to a raised bevel border
+        completedTaskPanel.setBorder(new BevelBorder(BevelBorder.LOWERED)); // Set the border of the panel to a lowered bevel border
 
         JLabel completedLabel = new JLabel(completedTask); // Create a new JLabel called completedLabel
         completedTaskPanel.add(completedLabel); // Add the completedLabel to the completedTask panel
