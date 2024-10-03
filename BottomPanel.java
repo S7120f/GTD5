@@ -1,6 +1,4 @@
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.FocusListener;
@@ -13,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JLabel;
 
 public class BottomPanel extends JPanel {
 
@@ -28,15 +25,11 @@ public BottomPanel() {
     //setLayout(new FlowLayout(FlowLayout.LEFT));
     setLayout(null);
 
-
-    
     add(initTitle());
     add(initDesc());
     add(button());
 
     }
-//sätt in en focuslabel så att den kan skifta fokuset dit istället för textfälten i uppstart av programmet! 
-
 
 private JTextField initTitle() {
     toDoTitle = new JTextField("Lägg till titel...", 15);  

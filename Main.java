@@ -3,14 +3,12 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import java.awt.KeyboardFocusManager;
 public class Main {
 
     //Declares a global todopanel object.
     private static TodoPanel todoPanel;
     private static BottomRightPanel bottomRightPanel;
     private static RightPanel rightPanel; 
-
 
     public static void main(String[] args) {
         JPanel mainPanel = new JPanel();
@@ -33,13 +31,11 @@ public class Main {
         frame.setResizable(false);
         frame.add(mainPanel);
         frame.pack();
+        frame.getContentPane().requestFocusInWindow(); //this thing right here gets the focus away from the JTextField in BottomPanel
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        //frame.getContentPane().requestFocusInWindow();
-        //KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
+
     }
-
-
 
     // A getter for the todopanel object.
     // Call this by Main.getTodoPanel()
