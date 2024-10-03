@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.awt.KeyboardFocusManager;
 public class Main {
 
     //Declares a global todopanel object.
@@ -34,8 +35,10 @@ public class Main {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
+        //frame.getContentPane().requestFocusInWindow();
+        //KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
     }
+
 
 
     // A getter for the todopanel object.

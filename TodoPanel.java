@@ -71,6 +71,7 @@ public class TodoPanel extends JPanel {
         // Add card panel to the class panel
         add(panelCard);
         repaint();
+        updateActiveTasks();
         // Adds active amount when added card.
         // int activeAmount = getComponentCount();
         // Main.getBottomRightPanel().updateActiveTasks(activeAmount);

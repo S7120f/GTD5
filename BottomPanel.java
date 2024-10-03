@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class BottomPanel extends JPanel {
 
@@ -23,18 +25,23 @@ public BottomPanel() {
 
     setBounds(0, 600, 800, 200);
     setBackground(new Color(0x7993FF));
-    setLayout(new FlowLayout(FlowLayout.LEFT));
+    //setLayout(new FlowLayout(FlowLayout.LEFT));
+    setLayout(null);
 
+
+    
     add(initTitle());
     add(initDesc());
     add(button());
-    
+
     }
+//sätt in en focuslabel så att den kan skifta fokuset dit istället för textfälten i uppstart av programmet! 
+
 
 private JTextField initTitle() {
-    
     toDoTitle = new JTextField("Lägg till titel...", 15);  
-    toDoTitle.setPreferredSize(new Dimension(100, 30)); // adjust the size of the textfield
+    toDoTitle.setBounds(10,10,170,30);
+    // toDoTitle.setPreferredSize(new Dimension(100, 30)); // adjust the size of the textfield
     toDoTitle.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));    // textfield border
     toDoTitle.setFont(new Font("Arial", Font.BOLD, 15));    // The font settings
     toDoTitle.addFocusListener(new FocusListener() {
@@ -55,8 +62,9 @@ private JTextField initTitle() {
 }
 
 private JTextArea initDesc() {
-    descriptionArea = new JTextArea("Lägg till text...", 5, 20);
-    descriptionArea.setPreferredSize(new Dimension(400, 150));  // adjust the size of the textarea
+    descriptionArea = new JTextArea("Lägg till text...");
+    descriptionArea.setBounds(200, 10, 400, 150);
+    //descriptionArea.setPreferredSize(new Dimension(400, 150));  // adjust the size of the textarea
     descriptionArea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));  // textfield border
     descriptionArea.setFont(new Font("Arial", Font.BOLD, 15));  // The font settings
     descriptionArea.setLineWrap(true);      // makes the line of text stay within the textarea, so it is visible all the time
@@ -78,9 +86,17 @@ private JTextArea initDesc() {
     return descriptionArea;
 }
 
+private void resetText() {
+    toDoTitle.setText("Lägg till titel...");
+    descriptionArea.setText("Lägg till text...");
+}
+
 private JButton button() {
     addButton = new JButton("add ToDo");
-    addButton.setPreferredSize(new Dimension(150, 150));    // size of the button
+    addButton.setMargin(new Insets(0, 0, 0, 0));
+    addButton.setBounds(610,10,150,150);
+    
+    // addButton.setPreferredSize(new Dimension(150, 150));    // size of the button
     addButton.setFont(new Font("Arial", Font.BOLD, 15));    // The font settings
     addButton.addActionListener(new ActionListener() {
         @Override
@@ -90,12 +106,12 @@ private JButton button() {
             String description = descriptionArea.getText();
             
             Main.getTodoPanel().createNewCard(title,description);
-
+            resetText();
         }
+
+        
     });
     return addButton;
 }
 
-
-    
 }
