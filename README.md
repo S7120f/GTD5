@@ -1,2 +1,2 @@
-# GTD5
-Planeringsverktyg 
+# DuckDuck ToDo
+Planeringsverktyg av Grupp 5 - GTD5

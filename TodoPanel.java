@@ -5,15 +5,14 @@ import java.awt.geom.Rectangle2D;
 
 public class TodoPanel extends JPanel {
 
-
     private final int
             CARD_SIZE_W = 370,
             CARD_SIZE_H = 100,
             CARD_OFFSET_W = 20,
             CARD_OFFSET_H = 30;
 
-    private Border lightBlueBorder, raisedbevel;
-    private Font titleFont;
+    private final Border lightBlueBorder, raisedBevel;
+    private final Font titleFont;
 
     public TodoPanel() {
         setBounds(0, 0, 800, 600);
@@ -22,30 +21,20 @@ public class TodoPanel extends JPanel {
 
         // Setting color to a border
         lightBlueBorder = BorderFactory.createLineBorder(new Color(0x7993FF));
-        raisedbevel = BorderFactory.createRaisedBevelBorder();
+        raisedBevel = BorderFactory.createRaisedBevelBorder();
 
         //Create the font of the title here, since it will be used in two methods.
         titleFont = new Font("Helvetica Neue", Font.PLAIN, 20);
-
-        //These are just temporary
-        createNewCard("Detta är något", "Ska göra någasd asd asd asd asd as adsasda adasdasd asda a dads d ao asd asd asd asd asd asd ast");
-        createNewCard("Detta är något anant", "Ska göra något annat");
-        createNewCard("Också något", "Detta ska också göras");
-        createNewCard("Även detta", "Även detta ska göras, ");
-
-
     }
-
 
     private int getAmountOfPanels() {
         int amountOfPanels = 0;
         for (Component c : getComponents())
-            if (c instanceof JPanel)
-                amountOfPanels++;
+            if (c instanceof JPanel) amountOfPanels++;
         return amountOfPanels;
     }
 
-    //Call this method to add a new todocard in this panel.
+    //Call this method to add a new card in the program
     public void createNewCard(String title, String description) {
 
 
@@ -66,15 +55,14 @@ public class TodoPanel extends JPanel {
         panelCard.add(addCompletedButton(title, panelCard));
 
         // Create and add Delete button
-        panelCard.add(addDeleteButton(title, panelCard));
+        panelCard.add(addDeleteButton(panelCard));
 
         // Add card panel to the class panel
         add(panelCard);
+
+        // Update View
         repaint();
         updateActiveTasks();
-        // Adds active amount when added card.
-        // int activeAmount = getComponentCount();
-        // Main.getBottomRightPanel().updateActiveTasks(activeAmount);
     }
 
 
@@ -84,13 +72,11 @@ public class TodoPanel extends JPanel {
         int x = calcTodoPanelXPosition(rowIndex);
         int y = calcTodoPanelYPosition(colIndex);
 
-        // Create panel for holding all parts
+        // Create a panel for holding all the parts
         JPanel panelCard = new JPanel();
         panelCard.setBackground(new Color(0x0B1130));
         panelCard.setBorder(lightBlueBorder);
         panelCard.setBounds(x, y, CARD_SIZE_W, CARD_SIZE_H);
-
-        // Will set layout false if bounds will be used on the panel.
         panelCard.setLayout(null);
         return panelCard;
     }
@@ -107,7 +93,7 @@ public class TodoPanel extends JPanel {
         textArea.setText(description);
 
         // Setting focusable to false, so we don't get
-        // the weird box over the text in the components.
+        // the weird "box" over the text in the components.
         textArea.setFocusable(false);
 
         return textArea;
@@ -115,29 +101,16 @@ public class TodoPanel extends JPanel {
 
     private void removeCard(JPanel panelCard) {
         remove(panelCard);
-        restructureCards();
+        repositionOfPanels();
     }
 
-    //TODO: Kinda just need to calc pos of all the cards AFTER the removed/completed one.
-    // No need to calc for the ones before since they wont move regardless of index.
-    // Or just take the pos of the one in front of each. Since all will be moved back one pos.
-    private void restructureCards() {
-        if (getComponents().length > 0)
-            for (int i = 0; i < getComponents().length; i++) {
-                int x = calcTodoPanelXPosition(i % 2);
-                int y = calcTodoPanelYPosition(i / 2);
-                getComponent(i).setLocation(x, y);
-            }
-
+    private void repositionOfPanels() {
+        for (int i = 0; i < getComponents().length; i++) {
+            int x = calcTodoPanelXPosition(i % 2);
+            int y = calcTodoPanelYPosition(i / 2);
+            getComponent(i).setLocation(x, y);
+        }
         repaint();
-    }
-
-    private int calcTodoPanelXPosition(int rowIndex) {
-        return CARD_OFFSET_W + rowIndex * (CARD_SIZE_W + CARD_OFFSET_W);
-    }
-
-    private int calcTodoPanelYPosition(int colIndex) {
-        return CARD_OFFSET_H + colIndex * (CARD_SIZE_H + CARD_OFFSET_H);
     }
 
     private JSeparator getTitleSeparator(String title) {
@@ -163,42 +136,49 @@ public class TodoPanel extends JPanel {
         return titleLabel;
     }
 
-    // TODO: Merge button methods?
-    private JButton addDeleteButton(String title, JPanel panelCard) {
-        JButton buttonDelete = new JButton();
+
+    private JButton addDeleteButton(JPanel panelCard) {
+        JButton buttonDelete = getBasicButton(Color.RED, "X");
         buttonDelete.setBounds(345, 5, 20, 20);
-        buttonDelete.setBackground(Color.GREEN);
-        buttonDelete.setMargin(new Insets(0, 0, 0, 0));
-        buttonDelete.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
-        buttonDelete.setText("X");
-        buttonDelete.setBorder(raisedbevel);
-        buttonDelete.setBackground(Color.RED);
-        buttonDelete.setFocusable(false);
         buttonDelete.addActionListener(_ -> {
-            System.out.println("Deleted: " + title + "!");
             removeCard(panelCard);
             updateActiveTasks();
         });
         return buttonDelete;
     }
 
-    private JButton addCompletedButton(String title, JPanel panelCard) {
-        JButton buttonCompleted = new JButton();
 
+    private JButton addCompletedButton(String title, JPanel panelCard) {
+        JButton buttonCompleted = getBasicButton(Color.GREEN, "Klar");
         buttonCompleted.setBounds(310, 65, 55, 30);
-        buttonCompleted.setBackground(Color.GREEN);
-        buttonCompleted.setMargin(new Insets(0, 0, 0, 0));
-        buttonCompleted.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
-        buttonCompleted.setText("Klar");
-        buttonCompleted.setBorder(raisedbevel);
-        buttonCompleted.setFocusable(false);
         buttonCompleted.addActionListener(_ -> {
-            System.out.println("Completed: " + title + "!");
             Main.getRightPanel().addCompletedTask(title);
             removeCard(panelCard);
             updateActiveTasks();
         });
         return buttonCompleted;
+    }
+
+
+    private JButton getBasicButton(Color color, String btnText) {
+        JButton button = new JButton();
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
+        button.setBorder(raisedBevel);
+        button.setFocusable(false);
+
+        button.setBackground(color);
+        button.setText(btnText);
+        return button;
+    }
+
+
+    private int calcTodoPanelXPosition(int rowIndex) {
+        return CARD_OFFSET_W + rowIndex * (CARD_SIZE_W + CARD_OFFSET_W);
+    }
+
+    private int calcTodoPanelYPosition(int colIndex) {
+        return CARD_OFFSET_H + colIndex * (CARD_SIZE_H + CARD_OFFSET_H);
     }
 
     private void updateActiveTasks() {
