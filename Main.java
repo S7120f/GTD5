@@ -5,10 +5,10 @@ import javax.swing.JPanel;
 
 public class Main {
 
-    //Declares a global todopanel object.
+    //Declares the panel classes
     private static TodoPanel todoPanel;
     private static BottomRightPanel bottomRightPanel;
-    private static RightPanel rightPanel; 
+    private static RightPanel rightPanel;
 
     public static void main(String[] args) {
         JPanel mainPanel = new JPanel();
@@ -16,24 +16,27 @@ public class Main {
         mainPanel.setBackground(Color.black);
         mainPanel.setLayout(null);
 
-        //Initializes all panel objects.
+        //Initializes all panel classes.
         bottomRightPanel = new BottomRightPanel();
         todoPanel = new TodoPanel();
-        rightPanel = new RightPanel(); // Initialize the right panel.
+        rightPanel = new RightPanel();
 
         mainPanel.add(new BottomPanel());
         mainPanel.add(todoPanel);
         mainPanel.add(bottomRightPanel);
-        mainPanel.add(rightPanel); // Add the right panel to the main panel.
+        mainPanel.add(rightPanel);
 
+        //Setting frame behaviors and values
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        frame.setTitle("DuckDuck ToDo");
         frame.add(mainPanel);
         frame.pack();
         frame.getContentPane().requestFocusInWindow(); //this thing right here gets the focus away from the JTextField in BottomPanel
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
 
     }
 
@@ -48,7 +51,6 @@ public class Main {
     public static BottomRightPanel getBottomRightPanel() {
         return bottomRightPanel;
     }
-
 
     // A getter for the RightPanel object.
     // Call this by Main.getRightPanel()
